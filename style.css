@@ -1,0 +1,450 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    position: relative;
+    background-color: #121212;
+}
+
+/* Styling Video Background */
+.bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -999;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+/* Overlay Transparan Gelap */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: -998;
+    pointer-events: none;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Screen Overlays (PIN & Gift) */
+.screen-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.pin-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-width: 320px;
+    width: 90%;
+}
+
+.pin-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid #ff758c;
+}
+
+.dot.active {
+    background-color: #ff758c;
+}
+
+.keypad {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.keypad button {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.gift-container {
+    text-align: center;
+    cursor: pointer;
+}
+
+.gift-box {
+    font-size: 80px;
+    animation: bounce 1.2s infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-20px); }
+}
+
+/* Main Dashboard Layout */
+main {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-section {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.hero-section .title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.8rem;
+    color: #ff758c;
+}
+
+.card-section {
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.card-section h2 {
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    color: #ff758c;
+    margin-bottom: 12px;
+}
+
+.section-desc {
+    font-size: 0.85rem;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.btn-action {
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+/* Styling Kue Ulang Tahun Lengkap */
+.cake-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.birthday-cake {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flame {
+    width: 14px;
+    height: 22px;
+    background: #ffab00;
+    border-radius: 50% 50% 20% 20%;
+    margin-bottom: 2px;
+    box-shadow: 0 0 12px #ffab00;
+    animation: flicker 0.6s infinite alternate;
+}
+
+@keyframes flicker {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0.6; transform: scale(0.95); }
+}
+
+.candle {
+    width: 10px;
+    height: 35px;
+    background: repeating-linear-gradient(45deg, #fff, #fff 4px, #ff758c 4px, #ff758c 8px);
+    border-radius: 3px;
+    z-index: 2;
+}
+
+.cake-top {
+    width: 90px;
+    height: 25px;
+    background: #ffb6c1; /* Warna krim atas kue */
+    border-radius: 50px 50px 0 0;
+    margin-top: -5px;
+    position: relative;
+    z-index: 1;
+    box-shadow: inset 0 -4px rgba(0,0,0,0.1);
+}
+
+.cake-body {
+    width: 120px;
+    height: 55px;
+    background: #ff758c; /* Warna badan kue */
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+
+/* Letter Section */
+.letter-card h3 {
+    color: #ffa6b9;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.letter-card p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #eaeaea;
+}
+
+/* Bouquet & Flowers */
+.bouquet-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 2rem;
+}
+
+.flower-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.flower-btn:hover {
+    transform: scale(1.15);
+}
+
+.flower-message-box {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #ffe6eb;
+    line-height: 1.4;
+}
+
+/* Polaroid Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.polaroid-card, .polaroid {
+    background: white;
+    padding: 10px 10px 15px 10px;
+    border-radius: 6px;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.polaroid-placeholder {
+    height: 120px;
+    background: #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    color: #ff758c;
+    border-radius: 4px;
+}
+
+.polaroid img, .polaroid-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.hidden-img {
+    display: none;
+}
+
+.caption, .polaroid-card p {
+    font-size: 0.8rem;
+    margin-top: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Vinyl Audio Player */
+.vinyl-container {
+    margin: 15px 0;
+}
+
+.vinyl-record {
+    width: 100px;
+    height: 100px;
+    background: #111;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 4px solid #333;
+}
+
+.spin {
+    animation: spinVinyl 3s linear infinite;
+}
+
+@keyframes spinVinyl {
+    100% { transform: rotate(360deg); }
+}
+
+.player-controls button {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Special Surprise Cards (Foto Pacar) */
+.couple-gifts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 20px;
+}
+
+@media (max-width: 500px) {
+    .couple-gifts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.couple-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px dashed #ff758c;
+    border-radius: 12px;
+    padding: 15px;
+    cursor: pointer;
+    text-align: center;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s;
+}
+
+.couple-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-front .gift-icon {
+    font-size: 40px;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.card-back img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 8px;
+}
+
+.couple-caption {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #fff;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+/* Styling Galeri Foto Berdua ("YOU & ME") */
+.couple-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.couple-card {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.couple-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(255, 117, 140, 0.3);
+}
+
+.couple-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.couple-caption {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    color: #555;
+    font-weight: 500;
+}

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selamat Ulang Tahun, Alicia! ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- VIDEO BACKGROUND -->
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="bg-video.mp4" type="video/mp4">
+        Browser kamu tidak mendukung video background.
+    </video>
+
+    <!-- 1. Screen Pin Lock / Passcode (MUNCUL PERTAMA KALI) -->
+    <div id="pin-screen" class="screen-overlay">
+        <div class="pin-card">
+            <h2>Untuk Kamu, Kaka cantik! 💖</h2>
+            <p>Masukkan PIN rahasia untuk membuka hadiah:</p>
+            <div class="pin-dots">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="keypad">
+                <button onclick="pressPin('1')">1</button>
+                <button onclick="pressPin('2')">2</button>
+                <button onclick="pressPin('3')">3</button>
+                <button onclick="pressPin('4')">4</button>
+                <button onclick="pressPin('5')">5</button>
+                <button onclick="pressPin('6')">6</button>
+                <button onclick="pressPin('7')">7</button>
+                <button onclick="pressPin('8')">8</button>
+                <button onclick="pressPin('9')">9</button>
+                <button onclick="clearPin()">C</button>
+                <button onclick="pressPin('0')">0</button>
+                <button onclick="checkPin()">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Screen Gift Box (SEMBUNYI DULUAN) -->
+    <div id="gift-screen" class="screen-overlay hidden">
+        <div class="gift-container" onclick="openGift()">
+            <div class="gift-box">🎁</div>
+            <p class="gift-text">Ketuk kado ini untuk membuka kejutan! ✨</p>
+        </div>
+    </div>
+
+    <!-- 3. Main Dashboard (SEMBUNYI DULUAN) -->
+    <main id="main-dashboard" class="hidden">
+        
+        <!-- Header / Greeting -->
+        <header class="hero-section">
+            <h1 class="title">Happy Birthday, Alicia! 🎉</h1>
+            <p class="date">02 November</p>
+            <p class="subtitle">Semoga harimu penuh kebahagiaan dan keajaiban!</p>
+        </header>
+
+        <!-- Birthday Cake & Candle -->
+        <section class="card-section">
+            <h2>— MAKE A WISH —</h2>
+            <div class="cake-container">
+                <div class="birthday-cake">
+                    <div class="flame" id="flame"></div>
+                    <div class="candle"></div>
+                    <div class="cake-top"></div>
+                    <div class="cake-body"></div>
+                </div>
+            </div>
+            <button class="btn-action" onclick="blowCandle()">Tiup Lilin 🎂</button>
+        </section>
+
+        <!-- Birthday Letter / Message -->
+        <section class="card-section">
+            <div class="letter-card">
+                <h2>— A LETTER FOR YOU —</h2>
+                <h3>Aliciaa my bestie ku tersayang 🌸</h3>
+                <p><strong>HAPPY BIRTHDAY TO THE PRETTIEST GIRL! 🎉! 🎉!! 🤍</strong></p>
+                <br>
+                <p>I hope life treats you kindly, semoga semua hal baik selalu find their way to you. Thank you for being such a wonderful person, for all the random stories, little moments, and memories that we’ve shared.</p>
+                <br>
+                <p>I genuinely wish you nothing but happiness, endless blessings, and everything your heart has been wishing for. I hope this new chapter brings you so many beautiful things, new opportunities, and reasons to smile.</p>
+                <br>
+                <p>Please never forget how precious you are and how much you deserve all the good things in this world. Stay the way you are, keep growing, and never stop being your authentic self.</p>
+                <br>
+                <p>So grateful to have met you. Here's to more memories, more random talks, more laughter, and more years of friendship. Love you always, bestie! 🥹🤍</p>
+            </div>
+        </section>
+
+        <!-- Digital Bouquet -->
+        <section class="card-section">
+            <h2>— DIGITAL BOUQUET —</h2>
+            <p class="section-desc">Setiap bunga menyimpan pesan kecil untukmu 💐</p>
+            <div class="bouquet-container">
+                <button class="flower-btn" onclick="showFlowerMsg('🌻 just like a sunflower, you bring warmth, happines, and a little sunshine to everyone lucky enough to know you!')">🌻</button>
+                <button class="flower-btn" onclick="showFlowerMsg('🌹 just like a rose, you carry beauty, strengt, and elegance, in your own way reminding everyone that sofness can also be poerful!')">🌹</button>
+                <button class="flower-btn" onclick="showFlowerMsg('🌷 just like a pink flower, you bring sweetness, warmth, and love wherever you go.')">🌷</button>
+                <button class="flower-btn" onclick="showFlowerMsg('🌸 Semoga harimu penuh keceriaan, selalu ditemukan kebahagiaan dan hal hal baik.')">🌸</button>
+            </div>
+            <div id="flower-message" class="flower-message-box">Pilih bunga di atas!</div>
+        </section>
+
+        <!-- PIECES OF YOU ✨ -->
+        <section class="card-section">
+            <h2>— PIECES OF YOU ✨ —</h2>
+            <div class="gallery-grid">
+                <div class="polaroid-card" onclick="revealPhoto(this)">
+                    <div class="polaroid-placeholder">📷 Ketuk untuk membuka</div>
+                    <img src="foto1.jpg" alt="Kenangan 1" class="hidden-img">
+                    <p>Pretty soul ✨</p>
+                </div>
+                <div class="polaroid-card" onclick="revealPhoto(this)">
+                    <div class="polaroid-placeholder">📷 Ketuk untuk membuka</div>
+                    <img src="foto2.jpg" alt="Kenangan 2" class="hidden-img">
+                    <p>Sweet Girl 🌊</p>
+                </div>
+                <div class="polaroid-card" onclick="revealPhoto(this)">
+                    <div class="polaroid-placeholder">📷 Ketuk untuk membuka</div>
+                    <img src="foto3.jpg" alt="Kenangan 3" class="hidden-img">
+                    <p>Her day😄</p>
+                </div>
+                <div class="polaroid-card" onclick="revealPhoto(this)">
+                    <div class="polaroid-placeholder">📷 Ketuk untuk membuka</div>
+                    <img src="foto4.jpg" alt="Kenangan 4" class="hidden-img">
+                    <p>Pretty one 🍃</p>
+                </div>
+                <div class="polaroid-card" onclick="revealPhoto(this)">
+                    <div class="polaroid-placeholder">📷 Ketuk untuk membuka</div>
+                    <img src="foto5.jpg" alt="Kenangan 5" class="hidden-img">
+                    <p>Lovely human 📸</p>
+                </div>
+                <div class="polaroid-card" onclick="revealPhoto(this)">
+                    <div class="polaroid-placeholder">📷 Ketuk untuk membuka</div>
+                    <img src="foto6.jpg" alt="Kenangan 6" class="hidden-img">
+                    <p>Forever precious ❤️</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pemutar Musik Vinyl & 3 Album Spotify -->
+        <section class="card-section">
+            <h2>— HER FAVORITE SONGS 🎶 —</h2>
+            <p class="section-desc">Piringan hitam berputar mengiringi, plus album favorit kita di Spotify! 🎶</p>
+            
+            <div class="music-player">
+                <audio id="bg-music" src="lagu1.mp3" loop></audio>
+
+                <div class="vinyl-container">
+                    <div class="vinyl-record" id="vinyl">
+                        <div class="vinyl-label">🎵</div>
+                    </div>
+                </div>
+
+                <div class="player-info">
+                    <h3 id="song-title">Background Music</h3>
+                    <p id="song-artist">Playing for Alicia ✨</p>
+                </div>
+
+                <div class="player-controls">
+                    <button onclick="togglePlayPause()" id="play-btn">⏸️ Mute / Pause</button>
+                </div>
+
+                <div class="spotify-albums-container" style="margin-top: 30px; display: flex; flex-direction: column; gap: 20px;">
+                    
+                    <!-- 1. The Weeknd -->
+                    <div class="spotify-item" style="text-align: left;">
+                        <p style="margin-bottom: 8px; font-weight: 600; color: #ff758c; font-size: 0.95rem;">1. The Weeknd 🌟</p>
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/4yP0hdKOZPNshxUOjY0cZj?utm_source=generator&si=2e98be1b49be4110" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+
+                    <!-- 2. The 1975 -->
+                    <div class="spotify-item" style="text-align: left;">
+                        <p style="margin-bottom: 8px; font-weight: 600; color: #ff758c; font-size: 0.95rem;">2. The 1975 🎸</p>
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/0kvoCDiWdZ7eHPW7xvdg3z?utm_source=generator&si=2f081afc95ca4e83" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+
+                    <!-- 3. Arctic Monkeys -->
+                    <div class="spotify-item" style="text-align: left;">
+                        <p style="margin-bottom: 8px; font-weight: 600; color: #ff758c; font-size: 0.95rem;">3. Arctic Monkeys 🐒</p>
+                        <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/7Heaa0B4KOxdWhSICTR2wE?utm_source=generator&si=fd9712dcd06a448e" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Reasons / Jar Notes -->
+        <section class="card-section">
+            <h2>— REASONS I'M GRATEFUL —</h2>
+            <div class="jar-card">
+                <div class="jar-icon">🫙</div>
+                <button class="btn-action" onclick="drawNote()">Kocok toplesnya ✨</button>
+                <p id="jar-note-text" class="jar-note-display">Ketuk tombol untuk mengambil pesan cinta...</p>
+            </div>
+        </section>
+
+        <!-- Special Surprise / Kado Foto Bersama Pacar -->
+        <section class="card-section">
+            <h2>— SPECIAL SURPRISE —</h2>
+            <p class="section-desc">Ketuk setiap kartu kado untuk membuka momen spesial bareng si dia! 🎁✨</p>
+            
+            <div class="couple-gifts-grid">
+                <div class="couple-card" onclick="openCoupleCard(this)">
+                    <div class="card-front">
+                        <span class="gift-icon">🎁</span>
+                        <p>Buka Kado #1</p>
+                    </div>
+                    <div class="card-back hidden">
+                        <img src="pacar1.jpg" alt="Momen Bersama 1">
+                        <p class="couple-caption">"Pasangan Terfavorit! ❤️"</p>
+                    </div>
+                </div>
+
+                <div class="couple-card" onclick="openCoupleCard(this)">
+                    <div class="card-front">
+                        <span class="gift-icon">🎁</span>
+                        <p>Buka Kado #2</p>
+                    </div>
+                    <div class="card-back hidden">
+                        <img src="pacar2.jpg" alt="Momen Bersama 2">
+                        <p class="couple-caption">"Kalian yang Selalu Bikin Iri ✨"</p>
+                    </div>
+                </div>
+
+                <div class="couple-card" onclick="openCoupleCard(this)">
+                    <div class="card-front">
+                        <span class="gift-icon">🎁</span>
+                        <p>Buka Kado #3</p>
+                    </div>
+                    <div class="card-back hidden">
+                        <img src="pacar3.jpg" alt="Momen Bersama 3">
+                        <p class="couple-caption">"Langgeng & Bahagia Terus Ya! 💑"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Foto Kamu & Alicia (Paling Terakhir) -->
+        <section class="card-section">
+            <h2>— YOU & ME 🌸 —</h2>
+            <p class="section-desc">Memories with you ✨</p>
+            
+            <div class="couple-gallery">
+                <div class="couple-card">
+                    <img src="kita1.jpg" alt="Kita Berdua 1">
+                    <p class="couple-caption">Just us 📸 ✨</p>
+                </div>
+                <div class="couple-card">
+                    <img src="kita2.jpg" alt="Kita Berdua 2">
+                    <p class="couple-caption">Good times 🤍</p>
+                </div>
+                <div class="couple-card">
+                    <img src="kita3.jpg" alt="Kita Berdua 3">
+                    <p class="couple-caption">Always fun ✨🌸</p>
+                </div>
+                <div class="couple-card">
+                    <img src="kita4.jpg" alt="Kita Berdua 4">
+                    <p class="couple-caption">Glad we're here 🤍🌸</p>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Made with ❤️ specially for Alicia</p>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
