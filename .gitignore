@@ -1,0 +1,6 @@
+# Abaikan folder assets atau gambar agar tidak ter-upload
+assets/
+*.png
+*.jpg
+*.jpeg
+*.mp4
